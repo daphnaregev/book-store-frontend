@@ -34,10 +34,6 @@ class BookDetailsModal extends React.Component {
         }
     }
 
-    handleChangePublicationDate = (date) => {
-        this.setState({ publicationDate: date, });
-    };
-
     onRequestClose = () => {
         this.props.onRequestClose();
     };

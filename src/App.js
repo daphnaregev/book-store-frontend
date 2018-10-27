@@ -3,6 +3,7 @@ import StringUtils from "./utils/StringUtils";
 import styled from "styled-components";
 import Book from "./models/Book";
 import BookCard from "./components/BookCard";
+import BookDetailsModal from "./components/BookDetailsModal";
 
 
 const books = [
@@ -51,6 +52,14 @@ const books = [
 ];
 
 class App extends Component {
+  constructor(props) {
+      super(props);
+
+      this.state = {
+          newBookDetailsVisible: false,
+      }
+  }
+
   render() {
     return (
         <AppContainer>
@@ -63,13 +72,18 @@ class App extends Component {
                     ))
                 }
                 <AddBookContainer
-                    onClick={() => {}}
+                    onClick={() => { this.setState({ newBookDetailsVisible: true }); }}
                 >
                     <ButtonContainer>
                         <i style={{ fontSize: 50, color: "steelblue" }} className="fas fa-plus-circle"/>
                         <NewBookLabel>{"ADD A NEW BOOK"}</NewBookLabel>
                     </ButtonContainer>
                 </AddBookContainer>
+                <BookDetailsModal
+                    onAfterOpen={() => {}}
+                    onRequestClose={() => {this.setState({ newBookDetailsVisible: false, })}}
+                    visible={this.state.newBookDetailsVisible}
+                />
             </BookList>
         </AppContainer>
 
