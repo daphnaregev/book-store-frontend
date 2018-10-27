@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import StringUtils from "./utils/StringUtils";
 import styled from "styled-components";
 import Book from "./models/Book";
-import BookCard from "./Components/BookCard";
+import BookCard from "./components/BookCard";
 
 
 const books = [
