@@ -1,25 +1,22 @@
 import React from 'react';
 import styled from "styled-components";
+
+
 class TextInput extends React.Component {
     constructor(props) {
-        super();
-
-        this.state = {
-            value: props.value ? props.value : "",
-        }
+        super(props);
     }
-
-    onChange = (event) => {
-        this.setState({ value: event.target.value }, () => {
-            if (this.props.onChange()) {
-                this.props.onChange(this.state.value);
-            }
-        });
+    onChange(event) {
+        this.props.onChange(event.target.value);
     };
 
     render () {
         return (
-            <Input type={"text"} value={this.state.value} onChange={this.onChange}/>
+            <Input
+                type={"text"}
+                value={this.props.value}
+                onChange={this.onChange.bind(this)}
+            />
         );
     }
 }

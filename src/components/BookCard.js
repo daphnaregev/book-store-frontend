@@ -3,12 +3,6 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import Book from '../models/Book';
 import BookDetailsModal from "./BookDetailsModal";
-import Dropdown from "react-dropdown";
-// import DatePicker from 'react-datepicker';
-// import moment from 'moment';
-
-
-
 
 
 class BookCard extends React.Component {
@@ -70,6 +64,7 @@ class BookCard extends React.Component {
                         onAfterOpen={this.onAfterShow}
                         onRequestClose={this.onRequestClose}
                         visible={this.state.detailsVisible}
+                        id={this.props.book.id}
                         author={this.props.book.author}
                         title={this.props.book.title}
                         isbnNumber={this.props.book.isbnNumber}
@@ -107,7 +102,7 @@ const AuthorTitleContainer = styled.div`
 const BookContainer = styled.div`
   font-family: "Open Sans";
   background-color: #fafafa;
-  height: 400px;
+  height: 450px;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -123,7 +118,7 @@ const BookCoverContainer = styled.div`
   background-color: ${props=>props.color};
   justify-content: space-between;
   align-items: center;
-  height: 275px;
+  height: 300px;
   width: 200px;
   display: flex;
   flex-direction: column;
