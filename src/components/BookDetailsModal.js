@@ -33,25 +33,19 @@ class BookDetailsModal extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps){
-        if (this.props.removingBook === true && !nextProps.removingBook === false) {
+        if (this.props.removingBook === true && nextProps.removingBook === false) {
             if (!nextProps.errorMessage || !nextProps.errorMessage.length) {
                 this.onRequestClose();
-            } else {
-                this.setState({error: "error removing book"})
             }
         }
-        if (this.props.savingBook === true && !nextProps.savingBook === false) {
-            if (!nextProps.errorMessage || !nextProps.errorMessage.length) {
+        if (this.props.savingBook === true && nextProps.savingBook === false) {
+            if (!(nextProps.errorMessage && nextProps.errorMessage.length)) {
                 this.onRequestClose();
-            } else {
-                this.setState({error: "error saving book"})
             }
         }
-        if (this.props.updatingBook === true && !nextProps.updatingBook === false) {
-            if (!nextProps.errorMessage || !nextProps.errorMessage.length) {
+        if (this.props.updatingBook === true && nextProps.updatingBook === false) {
+            if (!(nextProps.errorMessage && nextProps.errorMessage.length)) {
                 this.onRequestClose();
-            } else {
-                this.setState({error: "error updating book"})
             }
         }
     }

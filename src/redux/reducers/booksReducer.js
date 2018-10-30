@@ -74,7 +74,7 @@ const booksReducer = (state = initialState, action) => {
             return newState;
         }
         case actionTypes.SAVE_BOOK.ERROR: {
-            var newState = Object.assign({}, state);
+            let newState = Object.assign({}, state);
             newState.savingBook = false;
             newState.errorMessage = action.payload;
             return newState;
