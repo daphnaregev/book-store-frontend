@@ -22,7 +22,6 @@ class BookDetailsModal extends React.Component {
 
         // TODO - default props
         this.state = {
-            error: '',
             isbnNumber: props.isbnNumber,
             title: props.title,
             author: props.author,
@@ -84,6 +83,15 @@ class BookDetailsModal extends React.Component {
     };
 
     onRequestClose = () => {
+        this.setState({
+            isbnNumber: this.props.isbnNumber,
+            title: this.props.title,
+            author: this.props.author,
+            description: this.props.description,
+            price: this.props.price,
+            publicationDate: moment(this.props.publicationDate),
+            genre: this.props.genre,
+        });
         this.props.onRequestClose();
     };
 
