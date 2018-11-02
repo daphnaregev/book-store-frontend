@@ -1,34 +1,33 @@
 import React from "react";
-import Modal from "react-modal";
+import PropTypes from 'prop-types';
+import Modal from 'react-modal';
+import {connect} from "react-redux";
 import styled from "styled-components";
-import TextInput from "./TextInput";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker-cssmodules.css";
-
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
-import Book from '../models/Book';
 import moment from 'moment';
-
 import TextInputImitation from '../components/TextInputImitation';
-import {connect} from "react-redux";
 import booksActions from "../redux/actions/booksActions";
-import Spinner from 'react-spinkit';
+import TextInput from "./TextInput";
+import Book from '../models/Book';
+
 
 class BookDetailsModal extends React.Component {
 
     constructor(props) {
         super(props);
 
-        // TODO - default props
         this.state = {
-            isbnNumber: props.isbnNumber,
-            title: props.title,
-            author: props.author,
-            description: props.description,
-            price: props.price,
-            publicationDate: moment(props.publicationDate),
-            genre: props.genre,
+            newBook: !props.book.id,
+            isbnNumber: props.book.isbnNumber,
+            title: props.book.title,
+            author: props.book.author,
+            description: props.book.description,
+            price: props.book.price,
+            publicationDate: moment(props.book.publicationDate),
+            genre: props.book.genre,
         }
     }
     componentWillReceiveProps(nextProps){
@@ -51,7 +50,7 @@ class BookDetailsModal extends React.Component {
 
     saveBook = () => {
         try {
-            if (!this.props.id) {
+            if (!this.props.book.id) {
                 // New Book
                 const book = {
                     isbnNumber: parseInt(this.state.isbnNumber),
@@ -66,7 +65,7 @@ class BookDetailsModal extends React.Component {
             } else {
                 // Update Book
                 const book = {
-                    id: this.props.id,
+                    id: this.props.book.id,
                     isbnNumber: parseInt(this.state.isbnNumber),
                     description: this.state.description,
                     genre: this.state.genre,
@@ -83,15 +82,17 @@ class BookDetailsModal extends React.Component {
     };
 
     onRequestClose = () => {
-        this.setState({
-            isbnNumber: this.props.isbnNumber,
-            title: this.props.title,
-            author: this.props.author,
-            description: this.props.description,
-            price: this.props.price,
-            publicationDate: moment(this.props.publicationDate),
-            genre: this.props.genre,
-        });
+        if (this.state.newBook) {
+            this.setState({
+                isbnNumber: this.props.book.isbnNumber,
+                title: this.props.book.title,
+                author: this.props.author,
+                description: this.props.description,
+                price: this.props.price,
+                publicationDate: moment(this.props.publicationDate),
+                genre: this.props.genre,
+            });
+        }
         this.props.onRequestClose();
     };
 
@@ -163,7 +164,7 @@ class BookDetailsModal extends React.Component {
                             showMonthDropdown
                             showYearDropdown
                             dropdownMode="select"
-                            popperPlacement={"auto"}
+                            popperPlacement={"left"}
                         />
                     </DetailsRow>
                     <DetailsRow>
@@ -178,8 +179,8 @@ class BookDetailsModal extends React.Component {
                         <SaveRemoveButton
                             onClick={this.saveBook}
                         >{"Save Book"}</SaveRemoveButton>
-                        <SaveRemoveButton style={this.props.id ? {} : { backgroundColor: 'grey' }}
-                            onClick={this.props.id ? () => {this.props.removeBook(this.props.id)} : () => {}}>
+                        <SaveRemoveButton style={this.props.book.id ? {} : { backgroundColor: 'grey' }}
+                            onClick={this.props.book.id ? () => {this.props.removeBook(this.props.book.id)} : () => {}}>
                             {"Remove Book"}
                         </SaveRemoveButton>
                     </ButtonsRow>
@@ -201,6 +202,19 @@ export default connect((state) => {
     saveBook: booksActions.saveBook,
     updateBook: booksActions.updateBook,
 })(BookDetailsModal);
+
+BookDetailsModal.propTypes = {
+    book: Book.propTypes,
+    savingBook: PropTypes.bool.isRequired,
+    updatingBook: PropTypes.bool.isRequired,
+    removingBook: PropTypes.bool.isRequired,
+};
+BookDetailsModal.defaultProps = {
+    book: Book.defaultProps,
+    savingBook: PropTypes.bool.isRequired,
+    updatingBook: PropTypes.bool.isRequired,
+    removingBook: PropTypes.bool.isRequired,
+};
 
 const Label = styled.div`
   color: steelblue;

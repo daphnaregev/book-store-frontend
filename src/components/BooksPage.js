@@ -4,6 +4,7 @@ import BookCard from "./BookCard";
 import BookDetailsModal from "./BookDetailsModal";
 import {connect} from "react-redux";
 import booksActions from "../redux/actions/booksActions";
+import StringUtils from "../utils/StringUtils";
 
 
 class BooksPage extends Component {
@@ -33,7 +34,7 @@ class BooksPage extends Component {
                 <BookList>
                     {
                         this.props.books.map((item) => (
-                            <BookCard book={item}/>
+                            <BookCard key={item.id ? item.id : StringUtils.generateGUID()} book={item}/>
                         ))
                     }
                     <AddBookContainer
@@ -48,6 +49,7 @@ class BooksPage extends Component {
                         onAfterOpen={() => {}}
                         onRequestClose={() => {this.setState({ newBookDetailsVisible: false, })}}
                         visible={this.state.newBookDetailsVisible}
+                        book={this.props.book}
                     />
                 </BookList>
             </BooksContainer>
@@ -65,7 +67,7 @@ const mapDispatchToProps = { getBooks: booksActions.getBooks };
 export default connect(mapStateToProps, mapDispatchToProps)(BooksPage);
 
 const BooksContainer = styled.div`
-  font-family: "Open Sans";
+  font-family: "Open Sans", serif;
 `;
 const BookList = styled.div`
   display: flex;

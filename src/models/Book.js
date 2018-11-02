@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import moment from "moment";
 
 const Book = {};
 
@@ -11,7 +12,7 @@ Book.Genre = {
     HORROR: 'Horror'
 };
 
-Book.PropTypes = PropTypes.shape({
+Book.propTypes = PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
@@ -22,6 +23,18 @@ Book.PropTypes = PropTypes.shape({
     price: PropTypes.number,
     color: PropTypes.string,
 });
+
+Book.defaultProps = {
+    id: null,
+    title: null,
+    description: null,
+    isbnNumber: null,
+    author: null,
+    publicationDate: moment().format('YYYY-MM-DD').toString(),
+    genre: null,
+    price: null,
+    color: null,
+};
 
 export default Book;
 

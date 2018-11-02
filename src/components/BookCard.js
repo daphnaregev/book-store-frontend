@@ -37,6 +37,10 @@ class BookCard extends React.Component {
                 </BookCoverContainer>
                 <DetailsContainer>
                     <DetailsRow>
+                        <Label>isbnNumber:</Label>
+                        <div>{this.props.book.isbnNumber}</div>
+                    </DetailsRow>
+                    <DetailsRow>
                         <Label>Author:</Label>
                         <div>{this.props.book.author}</div>
                     </DetailsRow>
@@ -64,14 +68,7 @@ class BookCard extends React.Component {
                         onAfterOpen={this.onAfterShow}
                         onRequestClose={this.onRequestClose}
                         visible={this.state.detailsVisible}
-                        id={this.props.book.id}
-                        author={this.props.book.author}
-                        title={this.props.book.title}
-                        isbnNumber={this.props.book.isbnNumber}
-                        description={this.props.book.description}
-                        publicationDate={this.props.book.publicationDate}
-                        genre={this.props.book.genre}
-                        price={this.props.book.price}
+                        book={this.props.book}
                     />
                 </DetailsContainer>
             </BookContainer>
@@ -80,7 +77,10 @@ class BookCard extends React.Component {
 }
 
 BookCard.propTypes = {
-  book: Book.PropTypes,
+  book: Book.propTypes,
+};
+BookCard.defaultProps = {
+  book: Book.defaultProps,
 };
 
 export default BookCard;

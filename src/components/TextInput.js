@@ -3,9 +3,6 @@ import styled from "styled-components";
 
 
 class TextInput extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     onChange(event) {
         this.props.onChange(event.target.value);
     };
@@ -14,7 +11,7 @@ class TextInput extends React.Component {
         return (
             <Input
                 type={"text"}
-                value={this.props.value}
+                value={this.props.value ? this.props.value : ''}
                 onChange={this.onChange.bind(this)}
             />
         );

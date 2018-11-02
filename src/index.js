@@ -6,9 +6,14 @@ import {applyMiddleware, compose, createStore} from 'redux'
 import booksReducer from './redux/reducers/booksReducer'
 import booksApiMiddleware from "./redux/middlewares/booksApiMiddleware";
 import loggerMiddleware from './redux/middlewares/loggerMiddleware';
+import Modal from "react-modal";
 
 const enhancers = compose(applyMiddleware(booksApiMiddleware));
-const store = createStore(booksReducer, undefined, enhancers);render (
+const store = createStore(booksReducer, undefined, enhancers);
+
+Modal.setAppElement(document.getElementById('root'));
+
+render (
     <Provider store={store}>
         <App />
     </Provider>,
