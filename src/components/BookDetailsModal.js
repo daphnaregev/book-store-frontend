@@ -165,6 +165,7 @@ class BookDetailsModal extends React.Component {
                             onChange={(date)=>{ this.setState({ publicationDate: date })}}
                             showMonthDropdown
                             showYearDropdown
+                            minDate={moment('0001-01-01')}
                             dropdownMode="select"
                             popperPlacement={"left"}
                         />

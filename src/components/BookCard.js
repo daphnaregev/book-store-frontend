@@ -47,10 +47,6 @@ class BookCard extends React.Component {
                         <div>{this.props.book.title}</div>
                     </DetailsRow>
                     <DetailsRow>
-                        <Label>Description:</Label>
-                        <div>{this.props.book.description}</div>
-                    </DetailsRow>
-                    <DetailsRow>
                         <Label>Publication Date:</Label>
                         <div>{moment(this.props.book.publicationDate).format('MMM DD, YYYY').toString()}</div>
                     </DetailsRow>
