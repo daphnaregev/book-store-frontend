@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import {sharedStyledComponents} from "./sharedStyledComponents";
 
-class TextInputImitation extends React.Component {
+class TextInputMock extends React.Component {
     render() {
         return(
             <Container onClick={this.props.onClick}>
@@ -11,8 +12,7 @@ class TextInputImitation extends React.Component {
     }
 }
 
-const Container = styled.div`
-  font-family: "Open Sans"; //TODO - make font available for all the app
+const Container = styled(sharedStyledComponents.Text)`
   box-sizing: border-box;
   border-radius: 2px;
   border: 1px solid #ccc;
@@ -20,4 +20,4 @@ const Container = styled.div`
   font-size: 16px;
 `;
 
-export default TextInputImitation;
+export default TextInputMock;

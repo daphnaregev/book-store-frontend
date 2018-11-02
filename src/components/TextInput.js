@@ -21,7 +21,7 @@ class TextInput extends React.Component {
 export default TextInput;
 
 const Input = styled.input`
-  font-family: "Open Sans";
+  font-family: "Open Sans", serif;
   box-sizing: border-box;
   border-radius: 2px;
   border: 1px solid #ccc;

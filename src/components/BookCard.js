@@ -4,6 +4,7 @@ import tinycolor from 'tinycolor2';
 import Book from '../models/Book';
 import BookDetailsModal from "./BookDetailsModal";
 import moment from "moment";
+import {sharedStyledComponents} from "./sharedStyledComponents";
 
 
 class BookCard extends React.Component {
@@ -37,10 +38,6 @@ class BookCard extends React.Component {
                     </AuthorTitleContainer>
                 </BookCoverContainer>
                 <DetailsContainer>
-                    <DetailsRow>
-                        <Label>isbnNumber:</Label>
-                        <div>{this.props.book.isbnNumber}</div>
-                    </DetailsRow>
                     <DetailsRow>
                         <Label>Author:</Label>
                         <div>{this.props.book.author}</div>
@@ -100,8 +97,7 @@ const AuthorTitleContainer = styled.div`
   margin-top: 40px;
 `;
 
-const BookContainer = styled.div`
-  font-family: "Open Sans";
+const BookContainer = styled(sharedStyledComponents.Text)`
   background-color: #fafafa;
   height: 450px;
   width: 300px;

@@ -5,6 +5,7 @@ import BookDetailsModal from "./BookDetailsModal";
 import {connect} from "react-redux";
 import booksActions from "../redux/actions/booksActions";
 import StringUtils from "../utils/StringUtils";
+import {sharedStyledComponents} from "./sharedStyledComponents";
 
 
 class BooksPage extends Component {
@@ -66,9 +67,9 @@ const mapDispatchToProps = { getBooks: booksActions.getBooks };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BooksPage);
 
-const BooksContainer = styled.div`
-  font-family: "Open Sans", serif;
+const BooksContainer = styled(sharedStyledComponents.Text)`
 `;
+
 const BookList = styled.div`
   display: flex;
   flex-direction: row;
@@ -77,8 +78,7 @@ const BookList = styled.div`
   justify-content: flex-start;
 `;
 
-const AddBookContainer = styled.div`
-    font-family: "Open Sans";
+const AddBookContainer = styled(sharedStyledComponents.Text)`
     background-color: #fafafa;
     height: 400px;
     width: 300px;

@@ -8,10 +8,11 @@ import "react-datepicker/dist/react-datepicker-cssmodules.css";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css'
 import moment from 'moment';
-import TextInputImitation from '../components/TextInputImitation';
+import TextInputMock from '../components/TextInputMock';
 import booksActions from "../redux/actions/booksActions";
 import TextInput from "./TextInput";
 import Book from '../models/Book';
+import {sharedStyledComponents} from "./sharedStyledComponents";
 
 
 class BookDetailsModal extends React.Component {
@@ -77,7 +78,7 @@ class BookDetailsModal extends React.Component {
                 this.props.updateBook(book);
             }
         } catch (e) {
-            console.warn(`exception while trying to saving/updteing book: ${e}`);
+            console.warn(`Exception while trying to saving/updteing book: ${e}`);
         }
     };
 
@@ -159,7 +160,7 @@ class BookDetailsModal extends React.Component {
                         <Label>Publication Date:</Label>
                         <DatePicker
                             dateFormat="MMM DD, YYYY"
-                            customInput={<TextInputImitation/>}
+                            customInput={<TextInputMock/>}
                             selected={this.state.publicationDate}
                             onChange={(date)=>{ this.setState({ publicationDate: date })}}
                             showMonthDropdown
@@ -228,16 +229,14 @@ const DetailsRow = styled.div`
   justify-content: space-between;
 `;
 
-const ModalContainer = styled.div`
+const ModalContainer = styled(sharedStyledComponents.Text)`
     display: flex;
     height: 60vh;
     width: 40vw;
     flex-direction: column;
     justify-content: space-around;
-    font-family: "Open Sans",serif;
 `;
-const SaveRemoveButton = styled.div`
-  font-family: "Open Sans", serif;
+const SaveRemoveButton = styled(sharedStyledComponents.Text)`
   text-transform: uppercase;
   font-weight: bold;
   color: ghostwhite;
