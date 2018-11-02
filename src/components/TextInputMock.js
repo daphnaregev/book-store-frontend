@@ -18,6 +18,7 @@ const Container = styled(sharedStyledComponents.Text)`
   border: 1px solid #ccc;
   padding: 8px; 
   font-size: 16px;
+  width: 200px;
 `;
 
 export default TextInputMock;

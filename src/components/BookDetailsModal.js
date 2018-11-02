@@ -260,6 +260,5 @@ const ButtonsRow = styled.div`
 
 const GenreComboboxContainer = styled.div`
   width: 200px;
-  min-height: 50px;
 `;
 
