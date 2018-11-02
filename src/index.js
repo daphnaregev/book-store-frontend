@@ -8,10 +8,11 @@ import booksApiMiddleware from "./redux/middlewares/booksApiMiddleware";
 import loggerMiddleware from './redux/middlewares/loggerMiddleware';
 import Modal from "react-modal";
 
-const enhancers = compose(applyMiddleware(booksApiMiddleware));
+Modal.setAppElement(document.getElementById('root'));
+
+const enhancers = compose(applyMiddleware(booksApiMiddleware, loggerMiddleware));
 const store = createStore(booksReducer, undefined, enhancers);
 
-Modal.setAppElement(document.getElementById('root'));
 
 render (
     <Provider store={store}>
