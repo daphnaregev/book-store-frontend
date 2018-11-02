@@ -158,6 +158,7 @@ class BookDetailsModal extends React.Component {
                     <DetailsRow>
                         <Label>Publication Date:</Label>
                         <DatePicker
+                            dateFormat="MMM DD, YYYY"
                             customInput={<TextInputImitation/>}
                             selected={this.state.publicationDate}
                             onChange={(date)=>{ this.setState({ publicationDate: date })}}

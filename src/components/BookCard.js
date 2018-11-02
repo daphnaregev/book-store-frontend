@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import Book from '../models/Book';
 import BookDetailsModal from "./BookDetailsModal";
+import moment from "moment";
 
 
 class BookCard extends React.Component {
@@ -54,7 +55,7 @@ class BookCard extends React.Component {
                     </DetailsRow>
                     <DetailsRow>
                         <Label>Publication Date:</Label>
-                        <div>{this.props.book.publicationDate}</div>
+                        <div>{moment(this.props.book.publicationDate).format('MMM DD, YYYY').toString()}</div>
                     </DetailsRow>
                     <DetailsRow>
                         <Label>Genre:</Label>
